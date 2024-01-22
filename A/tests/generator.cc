@@ -40,14 +40,14 @@ int main(int argc, char** argv) {
 #ifdef IS_NOT_YUKICODER
     int case_num = 10;
     for (int t = 0; t < case_num; t++) {
-      makecase_rime(format("02_random_%02d_r.in", t + 1).c_str(), t);
+      makecase_rime(format("03_random_%02d_r.in", t + 1).c_str(), t);
     }
 #else
     int t;
     std::cin >> t;
     // to 0-origin
     --t;
-    makecase_yukicoder(format("03_random_%02d_y", t + 1).c_str(), t);
+    makecase_yukicoder(format("03_random_%02d", t + 1).c_str(), t);
 #endif
     return 0;
 }
