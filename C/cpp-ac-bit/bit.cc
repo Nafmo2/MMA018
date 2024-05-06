@@ -10,8 +10,6 @@ int main() {
   for (int i = 0; i < H; i++) {
     cin >> G[i];
   }
-  assert(G[0][0]=='o');
-  
   int dx[] = {1, 0};
   int dy[] = {0, 1};
   int N = H + W - 2;

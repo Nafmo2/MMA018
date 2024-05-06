@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #include "testlib.h"
 using namespace std;
 #define REP(i, n) for (int i = 0; i < n; i++)
@@ -26,30 +27,50 @@ void makecase_yukicoder(const std::string& filename, int testcase_idx) {
 }
 // end templates
 
-const int MIN_N = 1;
-const int MAX_N = 100000;
+const int MIN_N = 4;
+const int MAX_N = 200;
+const int MIN_A = 1;
+const int MAX_A = 10000000;
+const int MIN_P = 2;
+const int MAX_P = 1000000000;
 
 void makecase(std::ostream& os, int testcase_idx) {
   int N = rnd.next(MIN_N, MAX_N);
-  string cat = "[A-Z]{" + to_string(N) + "," + to_string(N) + "}";
-  string S = rnd.next(cat);
-  os << N << '\n' << S << '\n';
+  int P, Q;
+  do {
+    P = rnd.next(MIN_P, MAX_P);
+    Q = rnd.next(MIN_P, MAX_P);
+  } while (Q >= P);
+
+  os << N << ' ' << P << ' ' << Q << '\n';
+  set<int> S;
+  for (int i = 0; i < N; i++) {
+    int A = 0;
+    do {
+      A = rnd.next(MIN_A, MAX_A);
+    } while (S.find(A) != S.end());
+    S.insert(A);
+    os << A;
+    if (i != N - 1)
+      os << ' ';
+    else
+      os << '\n';
+  }
 }
 
 int main(int argc, char** argv) {
-    registerGen(argc, argv, 1);
+  registerGen(argc, argv, 1);
 #ifdef IS_NOT_YUKICODER
-    int case_num = 10;
-    for (int t = 0; t < case_num; t++) {
-      makecase_rime(format("03_random_%02d_r.in", t + 1).c_str(), t);
-    }
+  int case_num = 10;
+  for (int t = 0; t < case_num; t++) {
+    makecase_rime(format("03_random_%02d_r.in", t + 1).c_str(), t);
+  }
 #else
-    int t;
-    std::cin >> t;
-    // to 0-origin
-    --t;
-    makecase_yukicoder(format("03_random_%02d_y", t + 1).c_str(), t);
+  int t;
+  std::cin >> t;
+  // to 0-origin
+  --t;
+  makecase_yukicoder(format("03_random_%02d", t + 1).c_str(), t);
 #endif
-    return 0;
+  return 0;
 }
-

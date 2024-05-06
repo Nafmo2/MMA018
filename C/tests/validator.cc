@@ -15,7 +15,11 @@ int main(int argc, char** argv) {
     inf.readEoln();
     REP(i,H){
         string cat = "[ox#]{"+to_string(W)+","+to_string(W)+"}";
-        inf.readToken(cat, "S");
+        string s = inf.readToken(cat, "S");
+        if(i==0)
+            ensuref(s[0]=='o',"(0,0) not o");
+        if(i==H-1)
+            ensuref(s[W-1]!='#',"(H,W) is #");
         inf.readEoln();
     }
     inf.readEof();

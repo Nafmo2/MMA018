@@ -36,6 +36,12 @@ void makecase(std::ostream& os, int testcase_idx) {
   for(int i = 0; i<H; i++){
     string cat = "[ox]{" + to_string(W) + "," + to_string(W) + "}";
     string S = rnd.next(cat);
+    int n = W/2;
+    while(n){
+      int x = rnd.next(0,3*(W-1)/2);
+      if(x<W&&!(i==H-1&&x==W-1)&&S[x]=='x')S[x]='#';
+      n--;
+    }
     if (i == 0) S[0] = 'o';
     os << S << '\n';
   }
@@ -47,14 +53,14 @@ int main(int argc, char** argv) {
 #ifdef IS_NOT_YUKICODER
     int case_num = 10;
     for (int t = 0; t < case_num; t++) {
-      makecase_rime(format("02_random_%02d_r.in", t + 1).c_str(), t);
+      makecase_rime(format("03_random_%02d_r.in", t + 1).c_str(), t);
     }
 #else
     int t;
     std::cin >> t;
     // to 0-origin
     --t;
-    makecase_yukicoder(format("03_random_%02d_y", t + 1).c_str(), t);
+    makecase_yukicoder(format("03_random_%02d", t + 1).c_str(), t);
 #endif
     return 0;
 }
